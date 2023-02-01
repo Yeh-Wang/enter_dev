@@ -32,11 +32,11 @@ public class TrainingParameterEntity {
     @TableField("founder")
     private Integer founder;
 
+    @TableField("mechanism_id")
+    private Integer mechanismId;
+
     @TableField("train_type")
     private String trainType;
-
-    @TableField("mechanism_type")
-    private String mechanismType;
 
     @TableField("train_period")
     private Float trainPeriod;

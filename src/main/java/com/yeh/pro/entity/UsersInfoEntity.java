@@ -32,7 +32,10 @@ public class UsersInfoEntity {
     private Integer userGrade;
 
     @TableField("user_mechanism")
-    private String userMechanism;
+    private Integer userMechanism;
+
+    @TableField("real_name")
+    private String realName;
 
     @TableField("user_name")
     private String userName;
@@ -44,13 +47,11 @@ public class UsersInfoEntity {
     private String userSexy;
 
     @TableField("user_age")
-    private String userAge;
+    private Integer userAge;
 
     @TableField("user_phone")
     private String userPhone;
 
     @TableField("user_address")
     private String userAddress;
-
-
 }
