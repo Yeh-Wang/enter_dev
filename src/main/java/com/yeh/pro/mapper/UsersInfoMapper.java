@@ -50,7 +50,7 @@ public interface UsersInfoMapper extends BaseMapper<UsersInfoEntity> {
     int getId(@Param("grade") int grade, @Param("name") String name, @Param("password") String password);
 
     /**
-     * 根据机构编号找到属于该机构的所有用户信息
+     * 根据机构编号找到属于该机构的所有用户基本信息
      */
     @Select("select * from users_info where user_mechanism = #{mechanism_id} and user_grade = #{user_grade}")
     List<UsersInfoEntity> getUsersInfoByOrgId(@Param("mechanism_id") int mechanism_id,@Param("user_grade") int user_grade);

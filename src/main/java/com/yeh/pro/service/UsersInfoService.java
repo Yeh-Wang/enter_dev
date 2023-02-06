@@ -43,7 +43,7 @@ public interface UsersInfoService extends IService<UsersInfoEntity> {
     int getId(int grade,String username,String password);
 
     /**
-     * 根据机构编号找到属于该机构的所有用户信息
+     * 根据机构编号找到属于该机构的所有用户基本信息
      */
     List<UsersInfoEntity> getUsersInfoByOrgId(int mechanism_id, int user_grade);
 

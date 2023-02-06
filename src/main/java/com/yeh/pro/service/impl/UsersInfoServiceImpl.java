@@ -1,7 +1,9 @@
 package com.yeh.pro.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yeh.pro.entity.StuInfoEntity;
 import com.yeh.pro.entity.UsersInfoEntity;
+import com.yeh.pro.mapper.StuInfoMapper;
 import com.yeh.pro.mapper.UsersInfoMapper;
 import com.yeh.pro.service.UsersInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -25,9 +27,10 @@ public class UsersInfoServiceImpl extends ServiceImpl<UsersInfoMapper, UsersInfo
 
     //注入mapper
     private UsersInfoMapper usersInfoMapper;
+    private StuInfoMapper stuInfoMapper;
 
     @Autowired
-    public void UsersInfoMapper(UsersInfoMapper usersInfoMapper){
+    public void setUsersInfoMapper(UsersInfoMapper usersInfoMapper){
         this.usersInfoMapper=usersInfoMapper;
     }
 

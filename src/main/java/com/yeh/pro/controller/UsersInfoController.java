@@ -1,6 +1,9 @@
 package com.yeh.pro.controller;
 
+import com.yeh.pro.entity.StuInfoEntity;
 import com.yeh.pro.entity.UsersInfoEntity;
+import com.yeh.pro.service.StuInfoService;
+import com.yeh.pro.service.impl.StuInfoServiceImpl;
 import com.yeh.pro.service.impl.UsersInfoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +25,15 @@ public class UsersInfoController {
 
     //注入服务
     UsersInfoServiceImpl usersInfoService;
+    StuInfoServiceImpl stuInfoService;
 
     @Autowired
     public void setPersonInfoService(UsersInfoServiceImpl usersInfoService) {
         this.usersInfoService = usersInfoService;
+    }
+    @Autowired
+    public void setStuInfoService(StuInfoServiceImpl stuInfoService){
+        this.stuInfoService=stuInfoService;
     }
 
     /**
@@ -59,12 +67,21 @@ public class UsersInfoController {
     }
 
     /**
-     * 根据机构编号找到属于该机构的所有用户信息
+     * 根据机构编号找到属于该机构的所有用户基本信息
      */
     @ResponseBody
     @GetMapping("/getUsersInfoByOrgId/{mechanism_id},{user_grade}")
     List<UsersInfoEntity> getUsersInfoByOrgId(@PathVariable int mechanism_id, @PathVariable int user_grade){
         return usersInfoService.getUsersInfoByOrgId(mechanism_id,user_grade);
+    }
+
+    /**
+     * 根据机构编号找到属于该机构的所有用户所有信息
+     */
+    @ResponseBody
+    @GetMapping("/getUsersAllInfoByOrgId/{mechanism_id},{user_grade}")
+    List<StuInfoEntity> getUsersAllInfoByOrgId(@PathVariable int mechanism_id, @PathVariable int user_grade){
+        return stuInfoService.getUsersAllInfoByOrgId(mechanism_id, user_grade);
     }
 
     /**

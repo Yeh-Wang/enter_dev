@@ -37,5 +37,6 @@ public class ExamInfoEntity {
     @TableField("score")
     private Integer score;
 
-
+    @TableField("is_complete")
+    private String isComplete;
 }

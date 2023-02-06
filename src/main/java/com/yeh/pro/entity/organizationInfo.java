@@ -26,4 +26,6 @@ public class organizationInfo {
     String orgName;
     @TableField("org_type")
     String orgType;
+    @TableField("description")
+    String description;
 }
