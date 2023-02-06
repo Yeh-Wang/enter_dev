@@ -1,9 +1,11 @@
 package com.yeh.pro.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yeh.pro.entity.UsersInfoEntity;
 import com.yeh.pro.mapper.UsersInfoMapper;
 import com.yeh.pro.service.UsersInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+//import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +27,7 @@ public class UsersInfoServiceImpl extends ServiceImpl<UsersInfoMapper, UsersInfo
     private UsersInfoMapper usersInfoMapper;
 
     @Autowired
-    public void setPersonInfoMapper(UsersInfoMapper usersInfoMapper){
+    public void UsersInfoMapper(UsersInfoMapper usersInfoMapper){
         this.usersInfoMapper=usersInfoMapper;
     }
 
@@ -67,5 +69,23 @@ public class UsersInfoServiceImpl extends ServiceImpl<UsersInfoMapper, UsersInfo
     @Override
     public List<UsersInfoEntity> getUsersInfoByOrgId(int mechanism_id, int user_grade) {
         return usersInfoMapper.getUsersInfoByOrgId(mechanism_id,user_grade);
+    }
+
+    @Override
+    public Integer addUserInfo(UsersInfoEntity usersInfoEntity) {
+        Integer user_id = usersInfoMapper.selectOne(new QueryWrapper<UsersInfoEntity>().select("max(user_id) as userId")).getUserId()+1;
+        usersInfoEntity.setUserId(user_id);
+        usersInfoMapper.insert(usersInfoEntity);
+        return user_id;
+    }
+
+    @Override
+    public int updateUserInfo(UsersInfoEntity usersInfoEntity) {
+        return usersInfoMapper.updateById(usersInfoEntity);
+    }
+
+    @Override
+    public int deleteUserInfo(Integer id) {
+        return usersInfoMapper.deleteById(id);
     }
 }

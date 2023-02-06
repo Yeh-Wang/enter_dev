@@ -26,3 +26,4 @@ public class CorsConfig implements WebMvcConfigurer {
                 .exposedHeaders("*");
     }
 }
+//解决前端向后端发起请求时的跨域问题

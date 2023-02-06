@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalTime;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModel;
+//import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -23,7 +23,7 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 @TableName("learn_space")
-@ApiModel(value = "LearnSpaceEntity对象", description = "")
+//@ApiModel(value = "LearnSpaceEntity对象", description = "")
 public class LearnSpaceEntity {
 
     @TableId(value = "id", type = IdType.AUTO)
@@ -39,7 +39,7 @@ public class LearnSpaceEntity {
     private Integer videoId;
 
     @TableField("video_breakpoint")
-    private LocalTime videoBreakpoint;
+    private String videoBreakpoint;
 
     @TableField("plan_status")
     private Boolean planStatus;

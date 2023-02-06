@@ -66,4 +66,31 @@ public class UsersInfoController {
     List<UsersInfoEntity> getUsersInfoByOrgId(@PathVariable int mechanism_id, @PathVariable int user_grade){
         return usersInfoService.getUsersInfoByOrgId(mechanism_id,user_grade);
     }
+
+    /**
+     * 添加一个用户
+     */
+    @ResponseBody
+    @RequestMapping("/addUserInfo")
+    Integer addUserInfo(@RequestBody UsersInfoEntity usersInfoEntity){
+        return usersInfoService.addUserInfo(usersInfoEntity);
+    }
+
+    /**
+     * 更新一个用户信息
+     */
+    @ResponseBody
+    @RequestMapping("/updateUserInfo")
+    int updateUserInfo(@RequestBody UsersInfoEntity usersInfoEntity){
+        return usersInfoService.updateUserInfo(usersInfoEntity);
+    }
+
+    /**
+     * 删除一个用户信息
+     */
+    @ResponseBody
+    @GetMapping("/deleteUserInfo/{id}")
+    int deleteUserInfo(@PathVariable Integer id){
+        return usersInfoService.deleteUserInfo(id);
+    }
 }

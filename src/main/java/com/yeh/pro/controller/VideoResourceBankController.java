@@ -1,11 +1,19 @@
 package com.yeh.pro.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.yeh.pro.entity.VideoResourceBankEntity;
+import com.yeh.pro.service.impl.VideoResourceBankServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import ws.schild.jave.EncoderException;
+import ws.schild.jave.MultimediaObject;
+import ws.schild.jave.info.MultimediaInfo;
+
+import java.io.File;
+import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author YehWang
@@ -15,4 +23,96 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/video-resource-bank-entity")
 public class VideoResourceBankController {
 
+    private VideoResourceBankServiceImpl videoResourceBankService;
+
+    @Autowired
+    public void setChooseQuestionBankService(VideoResourceBankServiceImpl videoResourceBankService) {
+        this.videoResourceBankService = videoResourceBankService;
+    }
+
+    /**
+     * 选择所有视频资源信息
+     */
+    @ResponseBody
+    @GetMapping("/getAllVideoInfo")
+    List<VideoResourceBankEntity> getAllVideoInfo() {
+        return videoResourceBankService.getAllVideoInfo();
+    }
+
+    /**
+     * 增加一个视频信息
+     */
+    @ResponseBody
+    @RequestMapping("/addVideoInfo")
+    Integer addVideoInfo(@RequestBody VideoResourceBankEntity videoResourceBankEntity) {
+        return videoResourceBankService.addVideoInfo(videoResourceBankEntity);
+    }
+
+    /**
+     * 增加多个视频信息
+     */
+    @ResponseBody
+    @RequestMapping("/addSomeVideoInfo/{founderId}")
+    Integer addSomeVideoInfo(@PathVariable Integer founderId, @RequestBody String[] list) {
+        for (int i = 0; i < list.length; i++) {
+            VideoResourceBankEntity videoResourceBankEntity = new VideoResourceBankEntity();
+            videoResourceBankEntity.setVideoName(list[i]);
+            videoResourceBankEntity.setVideoUrl("http://localhost:9090/yeh/" + list[i]);
+            videoResourceBankEntity.setFounder(founderId);
+            Integer videoId = videoResourceBankService.getMaxId() + 1;
+            videoResourceBankEntity.setId(videoId);
+            String time = getVideoTime(new File("D:/looker/Video/" + list[i]));
+            videoResourceBankEntity.setVideoTotalTime(time);
+            videoResourceBankService.addVideoInfo(videoResourceBankEntity);
+        }
+        return 1;
+    }
+
+    /**
+     * 获取视频长度
+     */
+    public String getVideoTime(File file) {
+        try {
+            MultimediaObject instance = new MultimediaObject(file);
+            MultimediaInfo result = instance.getInfo();
+            int m = 0;
+            int s = (int) (result.getDuration() / 1000);
+            String time = "00:";
+            while (s > 60) {
+                s = s - 60;
+                m++;
+            }
+            if (m < 10) {
+                if (s < 10) {
+                    time = time + "0" + m + ":0" + s;
+                } else {
+                    time = time + "0" + m + ":" + s;
+                }
+            }else{
+                time = time + m + ":" + s;
+            }
+            return time;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "00:00:00";
+    }
+
+    /**
+     * 删除一个视频信息
+     */
+    @ResponseBody
+    @GetMapping("/deleteVideoInfo/{id}")
+    Integer deleteVideoInfo(@PathVariable Integer id) {
+        return videoResourceBankService.deleteVideoInfo(id);
+    }
+
+    /**
+     * 更改一个视频信息
+     */
+    @ResponseBody
+    @RequestMapping("/updateVideoInfo")
+    Integer updateVideoInfo(@RequestBody VideoResourceBankEntity videoResourceBankEntity) {
+        return videoResourceBankService.updateVideoInfo(videoResourceBankEntity);
+    }
 }

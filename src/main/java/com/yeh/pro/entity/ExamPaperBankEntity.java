@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalTime;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModel;
+//import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -23,11 +23,14 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 @TableName("exam_paper_bank")
-@ApiModel(value = "ExamPaperBankEntity对象", description = "")
+//@ApiModel(value = "ExamPaperBankEntity对象", description = "")
 public class ExamPaperBankEntity {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
+
+    @TableField("plan_id")
+    private Integer planId;
 
     @TableField("exam_subject")
     private String examSubject;
@@ -42,10 +45,10 @@ public class ExamPaperBankEntity {
     private Integer judgeQuestionNumber;
 
     @TableField("start_time")
-    private LocalTime startTime;
+    private String startTime;
 
     @TableField("end_time")
-    private LocalTime endTime;
+    private String endTime;
 
 
 }

@@ -46,4 +46,19 @@ public interface UsersInfoService extends IService<UsersInfoEntity> {
      * 根据机构编号找到属于该机构的所有用户信息
      */
     List<UsersInfoEntity> getUsersInfoByOrgId(int mechanism_id, int user_grade);
+
+    /**
+     * 添加一个用户
+     */
+    Integer addUserInfo(UsersInfoEntity usersInfoEntity);
+
+    /**
+     * 更新一个用户信息
+     */
+    int updateUserInfo(UsersInfoEntity usersInfoEntity);
+
+    /**
+     * 删除一个用户信息
+     */
+    int deleteUserInfo(Integer id);
 }

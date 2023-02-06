@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.models.auth.In;
+//import io.swagger.annotations.ApiModel;
+//import io.swagger.models.auth.In;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 @TableName("organization_info")
-@ApiModel(value = "organizationInfo对象", description = "")
+//@ApiModel(value = "organizationInfo对象", description = "")
 public class organizationInfo {
     @TableId(value = "id", type = IdType.AUTO)
     Integer id;

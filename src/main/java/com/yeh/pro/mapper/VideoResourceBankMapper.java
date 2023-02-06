@@ -3,6 +3,8 @@ package com.yeh.pro.mapper;
 import com.yeh.pro.entity.VideoResourceBankEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * <p>
@@ -15,4 +17,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface VideoResourceBankMapper extends BaseMapper<VideoResourceBankEntity> {
 
+    @Select("select * from video_resource_bank where id = #{id}")
+    VideoResourceBankEntity getVideoById(@Param("id") Integer id);
 }
