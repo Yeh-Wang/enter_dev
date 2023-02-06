@@ -28,4 +28,6 @@ public class organizationInfo {
     String orgType;
     @TableField("description")
     String description;
+    @TableField("display_content")
+    String displayContent;
 }

@@ -40,5 +40,4 @@ public class AuditInfoEntity {
     @TableField("audit_status")
     private Boolean auditStatus;
 
-
 }
