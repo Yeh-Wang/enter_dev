@@ -1,6 +1,8 @@
 package com.yeh.pro.controller;
 
+import com.yeh.pro.entity.UsersInfoEntity;
 import com.yeh.pro.entity.VideoResourceBankEntity;
+import com.yeh.pro.service.impl.UsersInfoServiceImpl;
 import com.yeh.pro.service.impl.VideoResourceBankServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +26,15 @@ import java.util.List;
 public class VideoResourceBankController {
 
     private VideoResourceBankServiceImpl videoResourceBankService;
+    private UsersInfoServiceImpl usersInfoService;
 
     @Autowired
-    public void setChooseQuestionBankService(VideoResourceBankServiceImpl videoResourceBankService) {
+    public void setVideoResourceBankService(VideoResourceBankServiceImpl videoResourceBankService) {
         this.videoResourceBankService = videoResourceBankService;
+    }
+    @Autowired
+    public void setUsersInfoService(UsersInfoServiceImpl usersInfoService){
+        this.usersInfoService=usersInfoService;
     }
 
     /**
@@ -96,6 +103,22 @@ public class VideoResourceBankController {
             e.printStackTrace();
         }
         return "00:00:00";
+    }
+
+    /**
+     * 获取超级管理员和指定机构的所有视频
+     */
+    @ResponseBody
+    @GetMapping("/getAllVideoByOrgId/{org_id}")
+    List<VideoResourceBankEntity> getAllVideoByOrgId(@PathVariable Integer org_id){
+        List<UsersInfoEntity> list_1 = usersInfoService.getUsersInfoByOrgId(org_id,1);
+        List<VideoResourceBankEntity> list_2 = videoResourceBankService.getVideoByFounder(1);
+        for(int i=0 ;i< list_1.size();i++){
+            List<VideoResourceBankEntity> list = videoResourceBankService.getVideoByFounder(list_1.get(i).getUserId());
+            list_2.addAll(list);
+            list.clear();
+        }
+        return list_2;
     }
 
     /**

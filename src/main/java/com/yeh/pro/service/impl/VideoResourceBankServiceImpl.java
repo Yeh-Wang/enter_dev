@@ -34,6 +34,11 @@ public class VideoResourceBankServiceImpl extends ServiceImpl<VideoResourceBankM
     }
 
     @Override
+    public List<VideoResourceBankEntity> getVideoByFounder(Integer founder) {
+        return videoResourceBankMapper.getVideoByFounder(founder);
+    }
+
+    @Override
     public List<VideoResourceBankEntity> getAllVideoInfo() {
         return videoResourceBankMapper.selectList(null);
     }

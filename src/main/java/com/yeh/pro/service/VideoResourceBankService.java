@@ -24,22 +24,27 @@ public interface VideoResourceBankService extends IService<VideoResourceBankEnti
     VideoResourceBankEntity getVideoInfoById(Integer video_id);
 
     /**
+     * 根据创建者查询视频信息
+     */
+    List<VideoResourceBankEntity> getVideoByFounder(Integer founder);
+
+    /**
      * 选择所有视频资源信息
      */
     List<VideoResourceBankEntity> getAllVideoInfo();
 
     /**
-     * 增加一个判断题信息
+     * 增加一个视频信息
      */
     Integer addVideoInfo(VideoResourceBankEntity videoResourceBankEntity);
 
     /**
-     * 删除一个判断题信息
+     * 删除一个视频信息
      */
     Integer deleteVideoInfo(Integer id);
 
     /**
-     * 更改一个判断题信息
+     * 更改一个视频信息
      */
     Integer updateVideoInfo(VideoResourceBankEntity videoResourceBankEntity);
 

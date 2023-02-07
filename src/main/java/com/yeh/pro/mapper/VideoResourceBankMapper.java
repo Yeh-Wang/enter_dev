@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -19,4 +21,7 @@ public interface VideoResourceBankMapper extends BaseMapper<VideoResourceBankEnt
 
     @Select("select * from video_resource_bank where id = #{id}")
     VideoResourceBankEntity getVideoById(@Param("id") Integer id);
+
+    @Select("select * from video_resource_bank where founder = #{founder}")
+    List<VideoResourceBankEntity> getVideoByFounder(@Param("founder") Integer founder);
 }
